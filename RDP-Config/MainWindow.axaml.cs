@@ -90,10 +90,20 @@ namespace RDP_Config
             bool multiMon = (bool)chkMultimonitor.IsChecked;
             configList.Add(new Rdpc("use multimon", "i", multiMon ? "1" : "0")); //multi-monitor 0 = off, 1 = on.
 
-            configList.Add(new Rdpc("redirectprinters", "i", "0"));
-            configList.Add(new Rdpc("redirectcomports", "i", "0"));
+            bool RedirectPrinters = (bool)chkRedirectPrinters.IsChecked;
+            configList.Add(new Rdpc("redirectprinters", "i", RedirectPrinters ? "1" : "0"));
+
+            bool RedirectComPorts = (bool)chkRedirectComports.IsChecked;
+            configList.Add(new Rdpc("redirectcomports", "i", RedirectComPorts ? "1" : "0"));
             configList.Add(new Rdpc("redirectsmartcards", "i", "0"));
             configList.Add(new Rdpc("redirectwebauthn", "i", "0"));
+
+            bool RedirectClipboards = (bool)chkRedirectClipboard.IsChecked;
+            configList.Add(new Rdpc("redirectclipboard", "i", RedirectClipboards ? "1" : "0")); //Clipboard
+
+            bool RedirectDrives = (bool)chkRedirectDrives.IsChecked;
+            configList.Add(new Rdpc("drivestoredirect", "s", RedirectDrives ? "*" : "")); //Drive redirection.
+
 
             configList.Add(new Rdpc("connection type", "i", "5"));//Connection Type WAN
             configList.Add(new Rdpc("disable menu anims", "i", "1"));

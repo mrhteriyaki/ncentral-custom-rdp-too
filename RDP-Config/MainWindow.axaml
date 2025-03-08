@@ -6,23 +6,26 @@
         x:Class="RDP_Config.MainWindow"
         Title="RDP Config"
 		Width="250"
-		Height="235">
+		Height="400">
 	<StackPanel Margin="10">
 		<TextBlock Text="Hostname address suffix:" />
 		<TextBox x:Name="txtSuffix" Margin="0,0,0,10" />
 		
 		<Grid ColumnDefinitions="Auto,10,*,10,Auto,10,*">
-			<TextBlock Text="Width" Grid.Column="0" VerticalAlignment="Center"/>
+			<TextBlock Text="Width:" Grid.Column="0" VerticalAlignment="Center"/>
 			<TextBox x:Name="txtWidthInput" Grid.Column="2" Margin="0,0,0,10"/>
 
-			<TextBlock Text="Height" Grid.Column="4" VerticalAlignment="Center"/>
+			<TextBlock Text="Height:" Grid.Column="4" VerticalAlignment="Center"/>
 			<TextBox x:Name="txtHeightInput" Grid.Column="6" Margin="0,0,0,10"/>
 		</Grid>
 
 
 		<CheckBox x:Name="chkFullscreen" Content="Full Screen" Margin="0,0,0,10" HorizontalAlignment="Left"/>
 		<CheckBox x:Name="chkMultimonitor" Content="Multi-Monitor" Margin="0,0,0,10" HorizontalAlignment="Left"/>
-		
+		<CheckBox x:Name="chkRedirectPrinters" Content="Redirect Printers" Margin="0,0,0,10" HorizontalAlignment="Left"/>
+		<CheckBox x:Name="chkRedirectComports" Content="Redirect COM Ports" Margin="0,0,0,10" HorizontalAlignment="Left"/>
+		<CheckBox x:Name="chkRedirectDrives" Content="Redirect Drives" Margin="0,0,0,10" HorizontalAlignment="Left"/>
+		<CheckBox x:Name="chkRedirectClipboard" Content="Redirect Clipboard" Margin="0,0,0,10" HorizontalAlignment="Left"/>		
 		<Button Content="Save" HorizontalAlignment="Right" Click="OnSaveClicked" />
 		
 	</StackPanel>
