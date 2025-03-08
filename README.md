@@ -1,8 +1,10 @@
 # RDP Ncentral Tool
 
 ## What is this?
-This is an RDP replacement for the n-central custom protocol handler to allow more control over the Remote desktop settings.
+This is a replacement for the n-central custom protocol handler to allow more control over the Remote desktop settings.
+Settings can be set once for all RDP Sessions, rather than the native per-device customisation.
 
+This only works with n-central appliances that use the SSH Tunnel, the failover HTTP tunnel is not implemented.
 
 ## Installation
 
