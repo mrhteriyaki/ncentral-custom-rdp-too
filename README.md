@@ -2,8 +2,10 @@
 
 ## Installation
 
-Copy the Files into: C:\Program Files (x86)\N-able Technologies\Custom Protocol Handler\
-It will overwrite the original tool.
+1. Extract the zip and overwrite the files in: C:\Program Files (x86)\N-able Technologies\Custom Protocol Handler\
+2. Configure your settings with RDP-Config.exe and click save.
+Settings are saved per-user under AppData\Roaming\NcentralProtocolHandler
+3. Use Remote Desktop in N-central.
 
 If the original tool is not already installed, register the file association with the below script:
 
