@@ -6,6 +6,10 @@ Settings can be set once for all RDP Sessions, rather than the native per-device
 
 This only works with n-central appliances that use the SSH Tunnel, the failover HTTP tunnel is not implemented.
 
+The address suffix option is to improve credential leakage / remember name for credentials.
+Setup a local zone in your DNS eg rdp.local with an A record for *.rdp.local to 127.0.0.1.
+Then set the prefix to rdp.local in the launcher.
+
 ## Installation
 
 1. Extract the zip and overwrite the files in: C:\Program Files (x86)\N-able Technologies\Custom Protocol Handler\
