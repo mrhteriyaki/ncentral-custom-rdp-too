@@ -1,5 +1,9 @@
 # RDP Ncentral Tool
 
+## What is this?
+This is an RDP replacement for the n-central custom protocol handler to allow more control over the Remote desktop settings.
+
+
 ## Installation
 
 1. Extract the zip and overwrite the files in: C:\Program Files (x86)\N-able Technologies\Custom Protocol Handler\
