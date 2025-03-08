@@ -9,6 +9,8 @@ This only works with n-central appliances that use the SSH Tunnel, the failover 
 The address suffix option is to improve credential leakage / remember name for credentials.
 Setup a local zone in your DNS eg rdp.local with an A record for *.rdp.local to 127.0.0.1.
 Then set the prefix to rdp.local in the launcher.
+When remote desktop sessions launch they will use a filtered device name in combination with .rdp.local as the address.
+This will cause the credential manager to match by individual address and also makes the taskbar display the session name rather than 127.0.0.1.
 
 ## Installation
 
