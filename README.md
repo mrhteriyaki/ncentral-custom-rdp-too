@@ -36,6 +36,6 @@ Set-ItemProperty -Path $CommandPath -Name "(Default)" -Value 'C:\Program Files (
 
 ```
 
-##Domain Suffix.
+## Domain Suffix.
 1. Setup a local zone in your DNS eg rdp.local with an A record for *.rdp.local to 127.0.0.1.
 2. Then set the prefix to rdp.local in the launcher and click save.
