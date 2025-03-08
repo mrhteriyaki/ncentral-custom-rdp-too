@@ -6,11 +6,9 @@ Settings can be set once for all RDP Sessions, rather than the native per-device
 
 This only works with n-central appliances that use the SSH Tunnel, the failover HTTP tunnel is not implemented.
 
-The address suffix option is to improve credential leakage / remember name for credentials.
-Setup a local zone in your DNS eg rdp.local with an A record for *.rdp.local to 127.0.0.1.
-Then set the prefix to rdp.local in the launcher.
-When remote desktop sessions launch they will use a filtered device name in combination with .rdp.local as the address.
-This will cause the credential manager to match by individual address and also makes the taskbar display the session name rather than 127.0.0.1.
+The address suffix is an optional feature to improve credential leakage and remember username for credential.
+Remote desktop will use a filtered device name in combination with .rdp.local as the address.
+Credential manager will match individual address and the taskbar will display the session name rather than 127.0.0.1.
 
 ## Installation
 
@@ -37,3 +35,7 @@ Set-ItemProperty -Path $IconPath -Name "(Default)" -Value "C:\Program Files (x86
 Set-ItemProperty -Path $CommandPath -Name "(Default)" -Value 'C:\Program Files (x86)\N-able Technologies\Custom Protocol Handler\Remote Application Launcher.exe "%1"'
 
 ```
+
+##Domain Suffix.
+1. Setup a local zone in your DNS eg rdp.local with an A record for *.rdp.local to 127.0.0.1.
+2. Then set the prefix to rdp.local in the launcher and click save.
