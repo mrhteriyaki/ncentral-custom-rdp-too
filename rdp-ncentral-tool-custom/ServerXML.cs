@@ -12,21 +12,41 @@ namespace rdp_ncentral_tool_custom
 {
     public static class ServerXML
     {
-        static List<string> xmlArguments;
+        static List<string> xmlArguments; //With example values.
 
-        public static int targetport;
-        public static int timeout;
-        public static int remotecontroltaskid;
-        public static string centralserverip;
+        public static int targetport; //10507
+        public static int timeout; //2
+        //public static string osname; //Windows
+        //public static string remotedesktop_sharelocalclipboard;
+        public static int remotecontroltaskid; //1234568
+        public static string centralserverip; //rmm.gici.com.au
+        //public static string remotedesktop_enablemultimonitor;
+        public static int targetport2 = -1; //-1
+        //public static string centralserverprotocol = "https";
         public static int userid;
         public static int localport;
         public static string centralserverpassword;
         public static string centralserverusername;
+
+        //public static string execpath;
+        public static string executable; //C:/Windows/system32/mstsc.exe
+        //public static string browser; //chrome
+        public static string cmdlineparam;
+        //public static string language; //en_US
+        //public static string rccType; //RemoteDesktop
+        //public static string deploymentType; //N-able Technologies
+        //public static string attendedRC; //false
+        //public static int logLevel; //5
+
+
         public static int applianceId;
         public static string rcsessionuuid;
+        public static string stunServers;
+        //public static string relayServer; //n-central
+        //fullscreen
+        //multimon
         public static string deviceId;
         public static string deviceName;
-        public static string stunServers;
 
         public static void Download()
         {
@@ -56,10 +76,10 @@ namespace rdp_ncentral_tool_custom
             }
             SW.Close();
 
-            
+
             remotecontroltaskid = int.Parse(GetValue("remotecontrolTaskId"));
-            centralserverip = GetValue("centralserverip");   
-            if(string.IsNullOrEmpty(LaunchArgs.serverID))
+            centralserverip = GetValue("centralserverip");
+            if (string.IsNullOrEmpty(LaunchArgs.serverID))
             {
                 LaunchArgs.serverID = centralserverip;
             }
@@ -69,6 +89,7 @@ namespace rdp_ncentral_tool_custom
             localport = int.Parse(GetValue("localport"));
             centralserverpassword = GetValue("centralserverpassword");
             centralserverusername = GetValue("centralserverusername");
+            executable = GetValue("executable");
             applianceId = int.Parse(GetValue("applianceid"));
             rcsessionuuid = GetValue("rcsessionuuid");
             deviceId = GetValue("deviceId");
@@ -84,7 +105,7 @@ namespace rdp_ncentral_tool_custom
                 {
                     if (xArg.ToLower().StartsWith(key.ToLower()))
                     {
-                        return xArg.Split(':')[1];
+                        return xArg.Substring(xArg.IndexOf(":") + 1);                       
                     }
                 }
                 return "";

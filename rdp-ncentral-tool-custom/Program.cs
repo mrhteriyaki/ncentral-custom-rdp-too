@@ -7,21 +7,16 @@ using System.IO.Compression;
 
 string rdpConfigDir = Path.Join(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), @"\NcentralProtocolHandler");
 
+if(!Directory.Exists(rdpConfigDir))
+{
+    Directory.CreateDirectory(rdpConfigDir);
+}
+
 LoggerClass Logger = new LoggerClass(Path.Join(rdpConfigDir, "log.txt"));
-bool rdpMode = false;
-if (args.Length == 1 && args[0].EndsWith(".jnlp"))
-{
-    string jnlpData = File.ReadAllText(args[0]);
-    LaunchArgs.privateKeyFile = Path.Join(Path.GetTempPath(),Guid.NewGuid().ToString() + ".key");
-    ServerXML.ImportData(jnlpData, "argument");
-}
-else
-{
-    LaunchArgs.ProcessArgs(args);
-    Acknowledgement.Send(); //Send Ack to /dms/rest/customProtocol/acknowledge
-    ServerXML.Download(); //Download XML from /webstart/tmp/123/456/789.xml
-    rdpMode = true;
-}
+
+LaunchArgs.ProcessArgs(args);
+Acknowledgement.Send(); //Send Ack to /dms/rest/customProtocol/acknowledge
+ServerXML.Download(); //Download XML from /webstart/tmp/123/456/789.xml
 
 Logger.LogMessage("Device name: " + ServerXML.deviceName);
 
@@ -35,14 +30,7 @@ Logger.LogMessage("Remote device connected to RMM Server.");
 
 //Regular CPH has a 3 second wait.
 //50ms resulted in failed to get peer details.
-if(rdpMode)
-{
-    Thread.Sleep(1500);
-}
-else
-{
-    Thread.Sleep(3000);
-}
+Thread.Sleep(1500);
 
 
 Logger.LogMessage("Getting Peer Details");
@@ -100,7 +88,7 @@ Timer KeepaliveTimer = new Timer(KACB, (object)null, 8000, 6000);
 
 
 
-if(rdpMode)
+if(ServerXML.executable.Contains("mstsc.exe"))
 {
 
     //need to cleanup the hostname here, symbols can break it.
@@ -121,14 +109,18 @@ if(rdpMode)
     rdpProc.WaitForExit();
     File.Delete(rdpFilePath);
 }
-else
+else if (ServerXML.executable.Contains("putty.exe"))
 {
     Process puttyProc = new Process();
     puttyProc.StartInfo.FileName = @"C:\Program Files\Putty\putty.exe";
-    puttyProc.StartInfo.Arguments = "-ssh 127.0.0.1 -P" + SshConnection.GetLocalSSHPort();
+    puttyProc.StartInfo.Arguments = "-ssh 127.0.0.1 -P " + SshConnection.GetLocalSSHPort();
     puttyProc.Start();
 
     puttyProc.WaitForExit();
+}
+else
+{
+    Logger.LogMessage("Unknown program to launch: " + ServerXML.executable);
 }
 
 KeepaliveTimer.Dispose();
