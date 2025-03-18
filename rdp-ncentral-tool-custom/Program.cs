@@ -30,7 +30,8 @@ Logger.LogMessage("Remote device connected to RMM Server.");
 
 //Regular CPH has a 3 second wait.
 //50ms resulted in failed to get peer details.
-Thread.Sleep(1500);
+//1500 works but not always.
+Thread.Sleep(3000);
 
 
 Logger.LogMessage("Getting Peer Details");
